@@ -21,5 +21,10 @@ export default class Order {
     return new Order(rows[0]);
   }
 
+  static async selectOrderById(id){
+    return pool.query('SELECT * FROM orders WHERE id = $1', [id])
+      .then((response) => new Order(response.rows[0]));
+  }
+
 }
 

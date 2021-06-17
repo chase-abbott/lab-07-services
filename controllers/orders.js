@@ -10,4 +10,13 @@ export default Router()
     catch(err){
       next(err);
     }
+  })
+  .get('/:id', async (req, res, next) => {
+    try{
+      return OrderService.getOrderById(req.params.id)
+        .then(response => res.send(response));
+    }
+    catch(err){
+      next(err);
+    }
   });
