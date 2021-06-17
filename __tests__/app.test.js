@@ -10,9 +10,9 @@ describe('demo routes', () => {
 
   it('adds a new order and sends a text message to micky', async () => {
     const order = {
-      typeOfItem: 'dildo',
+      typeOfItem: 'apples',
       quantityOfItems: 100,
-      itemCategory: 'poop'
+      itemCategory: 'fruit'
     };
 
     return request(app)
