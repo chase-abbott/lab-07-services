@@ -7,4 +7,20 @@ describe('demo routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
+
+  it('adds a new order and sends a text message to micky', async () => {
+    const order = {
+      typeOfItem: 'dildo',
+      quantityOfItems: 100,
+      itemCategory: 'poop'
+    };
+
+    return request(app)
+      .post('/api/v1/orders')
+      .send(order)
+      .then(response => {
+        expect(response.body).toEqual({ id: '1',   typeOfItem: 'apples', quantityOfItems: 100, itemCategory: 'fruit' });
+      });
+
+  });
 });
