@@ -5,7 +5,7 @@ export default class OrderService {
   static async create(body){
     
     const order = await Order.insertOrder(body);
-    await sendMessage(process.env.MY_NUMBER, `Your order of ${order.quantityOfItems} ${order.typeOfItem} has shipped `);
+    await sendMessage(process.env.MY_NUMBER, `Your order of ${order.quantityOfItems} ${order.typeOfItem}s has shipped `);
     
     return order;
   }
