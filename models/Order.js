@@ -36,5 +36,11 @@ export default class Order {
       .then(response => new Order(response.rows[0]));
   }
 
+  static async deleteOrder(id){
+    return pool.query('DELETE FROM orders WHERE id = $1 RETURNING *'
+      , [id])
+      .then(res => new Order(res.rows[0]));
+  }
+
 }
 

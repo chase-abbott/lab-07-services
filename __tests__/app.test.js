@@ -71,4 +71,28 @@ describe('demo routes', () => {
 
 
   });
+
+  it('deletes an order from the database and sends me a text message', async () => {
+    const order = {
+      typeOfItem: 'apples',
+      quantityOfItems: 100,
+      itemCategory: 'fruit'
+    };
+
+    return request(app)
+      .post('/api/v1/orders')
+      .send(order)
+      .then(res => (
+        request(app)
+          .delete(`/api/v1/orders/${res.body.id}`)
+      ))
+      .then(res => (
+        expect(res.body).toEqual({
+          id: '1',   
+          typeOfItem: 'apples',
+          quantityOfItems: 100, 
+          itemCategory: 'fruit' 
+        })
+      ));
+  });
 });

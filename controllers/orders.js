@@ -28,4 +28,13 @@ export default Router()
     catch(err){
       next(err);
     }
+  })
+  .delete('/:id', async (req, res, next) => {
+    try{
+      return OrderService.deleteOrder(req.params.id)
+        .then(resp => res.send(resp));
+    }
+    catch(err){
+      next(err);
+    }
   });
