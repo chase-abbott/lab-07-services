@@ -12,12 +12,6 @@ jobs:
           POSTGRES_USER: alchemy
           POSTGRES_PASSWORD: alchemy
     steps:
-    - uses: actions/checkout@v2
-    - run: npm ci
-    - run: npm test
-      env:
-        CI: true
-        DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
     - name: 'Sending SMS Notification'
       uses: twilio-labs/actions-sms@v1
       with:
@@ -29,4 +23,11 @@ jobs:
         TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         TWILIO_NUMBER: ${{ secrets.TWILIO_NUMBER }}
         MY_NUMBER: ${{ serets.MY_NUMBER }}
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - run: npm test
+      env:
+        CI: true
+        DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
+  
     
