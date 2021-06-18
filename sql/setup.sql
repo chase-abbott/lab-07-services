@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+type_of_item TEXT NOT NULL,
+quantity_of_items INT NOT NULL,
+item_category TEXT NOT NULL
+);
