@@ -32,7 +32,7 @@ describe('demo routes', () => {
       itemCategory: 'fruit'
     };
 
-    request(app)
+    return request(app)
       .post('/api/v1/orders')
       .send(order)
       .then(response => request(app).get(`/api/v1/orders/${response.body.id}`))
