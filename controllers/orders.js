@@ -19,4 +19,13 @@ export default Router()
     catch(err){
       next(err);
     }
+  })
+  .put('/:id', async (req, res, next) => {
+    try{
+      return OrderService.updateOrder(req.params.id, req.body)
+        .then(resp => res.send(resp));
+    }
+    catch(err){
+      next(err);
+    }
   });

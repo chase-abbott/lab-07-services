@@ -26,5 +26,15 @@ export default class Order {
       .then((response) => new Order(response.rows[0]));
   }
 
+  static async updateOrder(id, { typeOfItem, quantityOfItems }){
+    return pool.query(`
+    UPDATE orders 
+    SET type_of_item = $1, quantity_of_items = $2 
+    WHERE id = $3 
+    RETURNING *`
+    , [typeOfItem, quantityOfItems, id])
+      .then(response => new Order(response.rows[0]));
+  }
+
 }
 

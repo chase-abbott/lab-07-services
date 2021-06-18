@@ -42,4 +42,33 @@ describe('demo routes', () => {
       .catch(err => console.log(err));
 
   });
+
+  it('updates a new order in the database and notifies me the updated order', async () => {
+    const order = {
+      typeOfItem: 'apples',
+      quantityOfItems: 100,
+      itemCategory: 'fruit'
+    };
+
+    return request(app)
+      .post('/api/v1/orders')
+      .send(order)
+      .then(res => (
+        request(app).put(`/api/v1/orders/${res.body.id}`)
+          .send({
+            typeOfItem: 'candy',
+            quantityOfItems: 1,
+            itemCategory: 'fruit' })))
+      .then(res => {
+        expect(res.body).toEqual(
+          { 
+            id: '1', 
+            typeOfItem: 'candy',
+            quantityOfItems: 1,
+            itemCategory: 'fruit' });
+      });
+     
+
+
+  });
 });
